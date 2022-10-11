@@ -1,0 +1,6 @@
+project: WeTextProcessing
+target: text_processing_fuzz
+
+cmds:
+    - cmd: /WeTextProcessing/fuzz/text_processing_fuzz.py
+      libfuzzer: true
