@@ -18,9 +18,8 @@
 #include "fst/extensions/far/farlib.h"
 
 #include "processor/token_parser.h"
-#include "utils/log.h"
 
-using fst::FarReader;
+using fst::Fst;
 using fst::StdArc;
 using fst::StringCompiler;
 
@@ -35,11 +34,12 @@ class Processor {
   std::string normalize(const std::string& input);
 
  private:
-  std::string compose(const std::string& input, const std::string& name);
+  std::string compose(const std::string& input, const Fst<StdArc>* fst);
 
-  TokenParser* parser = nullptr;
-  FarReader<StdArc>* reader = nullptr;
-  std::shared_ptr<StringCompiler<StdArc>> compiler = nullptr;
+  ParseType parse_type_;
+  Fst<StdArc>* tagger_ = nullptr;
+  Fst<StdArc>* verbalizer_ = nullptr;
+  std::shared_ptr<StringCompiler<StdArc>> compiler_ = nullptr;
 };
 
 }  // namespace wenet
